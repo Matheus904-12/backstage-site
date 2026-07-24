@@ -522,7 +522,7 @@ section.hero-row-section { padding: 40px 0 56px; }
 
 .spotify-block { background: var(--teal); padding: 40px 24px; text-align: center; }
 .spotify-block img {
-  margin: 0 auto; max-width: 420px;
+  margin: 0 auto; width: 100%; max-width: 420px; height: auto;
   border: 3px solid var(--ink); border-radius: 12px;
 }
 .spotify-block p { color: var(--ink); margin-top: 16px; font-family: var(--note); font-weight: 600; }
