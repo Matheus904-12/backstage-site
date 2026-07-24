@@ -2,7 +2,7 @@
    BACKSTAGE — estilo seguindo os slides originais
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Zilla+Slab:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Caveat:wght@700&family=Zilla+Slab:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
   --mustard: #E7B65C;
@@ -67,16 +67,16 @@ img, video { max-width: 100%; display: block; }
 /* ---------- Collage heading (título estilo revista recortada) ---------- */
 
 .collage {
-  font-family: var(--display);
   display: inline-flex;
   flex-wrap: wrap;
-  line-height: 1;
+  line-height: 1.05;
+  font-weight: 700;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
 }
 
 .collage span {
   display: inline-block;
-  transform: rotate(var(--r, 0deg));
-  margin: 0 0.01em;
+  margin: 0 0.015em;
 }
 
 /* ---------- Header ---------- */
@@ -160,9 +160,24 @@ nav.dept-nav a.active { color: var(--coral); }
   background: var(--swirl-teal);
   padding: 56px 0 48px;
   position: relative;
+  overflow: hidden;
 }
 
+.hero-tabs {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+.hero-tabs .tab-1 { width: 54px; height: 90px; background: var(--teal); border-radius: 0 30px 30px 0; }
+.hero-tabs .tab-2 { width: 70px; height: 110px; background: var(--mustard); border-radius: 0 30px 30px 0; margin-top: 18px; }
+.hero-tabs .tab-3 { width: 48px; height: 80px; background: var(--sage-dark); border-radius: 0 30px 30px 0; margin-top: 160px; }
+
 .hero-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 32px;
@@ -378,6 +393,14 @@ section.text-section { padding: 56px 0; }
   color: #333;
 }
 
+/* ---------- Hero de departamento com carrossel lado a lado (Marketing, Música) ---------- */
+
+section.hero-row-section { padding: 40px 0 56px; }
+.hero-row { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; }
+.hero-row .hero-text-col { flex: 1 1 320px; }
+.hero-row .hero-img-col { flex: 1 1 320px; max-width: 460px; width: 100%; }
+.hero-row .hero-img-col .carousel-track { height: auto; aspect-ratio: 16 / 10; }
+
 .dept-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -404,6 +427,7 @@ section.text-section { padding: 56px 0; }
 /* ---------- Project card (ticket estilo "Projetos" dos slides) ---------- */
 
 .project-card {
+  --accent: var(--mustard);
   background: var(--paper);
   border: 2.5px solid var(--ink);
   border-radius: 40px 40px 14px 14px;
@@ -414,11 +438,13 @@ section.text-section { padding: 56px 0; }
   align-items: center;
 }
 
+.project-card.accent-sage { --accent: var(--sage-dark); }
+
 .project-card .project-eyebrow {
   font-family: var(--note);
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage-dark);
+  color: var(--accent);
   font-size: 0.95rem;
   margin-bottom: 4px;
 }
@@ -457,7 +483,7 @@ section.text-section { padding: 56px 0; }
   margin-top: 26px;
   color: var(--mustard);
 }
-.project-divider .line { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--mustard) 0 8px, transparent 8px 14px); }
+.project-divider .line { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--accent) 0 8px, transparent 8px 14px); }
 .project-divider .heart { font-size: 1.1rem; }
 
 /* ---------- Posts (cinema) ---------- */
@@ -478,10 +504,33 @@ section.text-section { padding: 56px 0; }
 
 /* ---------- Video block (moda) ---------- */
 
-.video-block { padding: 24px 0; background: var(--paper); }
+.video-block { padding: 28px 0 0; }
 .video-block video {
   width: 100%; max-height: 500px; object-fit: cover;
   border: 3px solid var(--ink); border-radius: 16px;
+}
+
+.video-placeholder {
+  border: 3px dashed var(--ink);
+  border-radius: 16px;
+  background: var(--paper);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+}
+.video-placeholder .play-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--mustard); color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+.video-placeholder p {
+  font-family: var(--note); color: var(--gray);
+  text-align: center; max-width: 420px; margin: 0;
 }
 
 /* ---------- Feedback ---------- */
@@ -573,7 +622,7 @@ section.feedback-section { background: var(--sage); padding: 52px 0; }
 /* ---------- Footer ---------- */
 
 footer.site-footer { background: var(--ink); color: #d8d3c4; padding: 44px 0 26px; }
-.footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
 .footer-logo { font-size: 1.4rem; }
 .footer-grid h4 {
   color: var(--paper); font-family: var(--note); font-size: 0.85rem;
@@ -587,6 +636,13 @@ footer.site-footer { background: var(--ink); color: #d8d3c4; padding: 44px 0 26p
   border: 1px solid #3a3629; border-radius: 999px; width: fit-content;
 }
 .spotify-footer-link:hover { border-color: var(--mustard); color: var(--mustard); }
+
+.footer-qr-col img {
+  width: 150px; height: 150px; border: 2px solid var(--paper); border-radius: 10px;
+  background: #fff; padding: 4px; object-fit: cover; transition: transform 0.15s ease;
+}
+.footer-qr-col img:hover { transform: scale(1.04); }
+.footer-qr-col p { font-size: 0.8rem; color: #9a9a90; margin-top: 10px; max-width: 180px; }
 .footer-bottom {
   margin-top: 32px; padding-top: 18px; border-top: 1px solid #33301f;
   font-size: 0.8rem; color: #948e77;
@@ -597,12 +653,14 @@ footer.site-footer { background: var(--ink); color: #d8d3c4; padding: 44px 0 26p
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
+  .hero-tabs { display: none; }
   .dept-grid { grid-template-columns: repeat(2, 1fr); }
   .posts-grid { grid-template-columns: 1fr; }
   .articles-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .mv-grid { grid-template-columns: 1fr; }
   .project-card { grid-template-columns: 1fr; }
+  .hero-row .hero-img-col { max-width: 100%; }
 }
 
 @media (max-width: 700px) {

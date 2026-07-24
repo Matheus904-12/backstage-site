@@ -3,10 +3,42 @@
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initCollageText();
   initNavToggle();
   initCarousels();
   initFeedbackForms();
 });
+
+// ---------- Texto recortado (collage) ----------
+function initCollageText() {
+  const palettes = {
+    default: ['#8C2F39', '#2E5C4E', '#1F3A5F', '#B5762B', '#5C3A5C', '#3E4A2E', '#7E4A8C', '#C4402E'],
+    pastel: ['#E8927C', '#F0C36D', '#A9CBC0', '#E3A8C4', '#C9B8E8', '#F3D896', '#9FD8C9'],
+  };
+  const fonts = ["'Bungee', cursive", "'Zilla Slab', serif", "'Caveat', cursive"];
+  const rotations = [-6, 4, -3, 6, -8, 3, -4, 7, -5, 2, -7, 5];
+
+  document.querySelectorAll('[data-collage]').forEach((el) => {
+    const text = el.dataset.text || el.textContent.trim();
+    const palette = palettes[el.dataset.variant] || palettes.default;
+    el.textContent = '';
+    let i = 0;
+    for (const ch of text) {
+      const span = document.createElement('span');
+      if (ch === ' ') {
+        span.innerHTML = '&nbsp;';
+        span.style.width = '0.32em';
+      } else {
+        span.textContent = ch;
+        span.style.fontFamily = fonts[i % fonts.length];
+        span.style.color = palette[i % palette.length];
+        span.style.transform = `rotate(${rotations[i % rotations.length]}deg)`;
+        i++;
+      }
+      el.appendChild(span);
+    }
+  });
+}
 
 // ---------- Menu mobile ----------
 function initNavToggle() {
