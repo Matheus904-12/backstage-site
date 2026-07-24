@@ -37,17 +37,3 @@ python3 -m http.server 8080
 ```
 
 e acessar `http://localhost:8080`.
-
-## Publicar no GitHub + Vercel
-
-1. Crie um repositório no GitHub e suba esta pasta:
-   ```bash
-   git init
-   git add .
-   git commit -m "Site BACKSTAGE"
-   git branch -M main
-   git remote add origin <URL_DO_SEU_REPO>
-   git push -u origin main
-   ```
-2. No [vercel.com](https://vercel.com), clique em **Add New → Project**, importe o repositório e mantenha as configurações padrão (é um site estático, sem build step).
-3. Clique em **Deploy**.
