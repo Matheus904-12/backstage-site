@@ -21,12 +21,11 @@ assets/video/      → vídeo de moda (ainda não enviado — ver pendências)
 
 ## Pendências (assets ainda não enviados)
 
-- **Marketing:** sem fotos reais de dinâmica (usando placeholders em `assets/img/marketing-dinamica-*.svg`)
-- **Cinema:** posts do Instagram (imagem + legenda) ainda são placeholders em `assets/img/cinema-post-*.svg`
+- **Marketing:** sem fotos reais de dinâmica — o carrossel mostra um placeholder (`.media-placeholder` em `assets/style.css`) até a foto chegar
+- **Cinema:** posts do Instagram (imagem + legenda) ainda são placeholders (`.media-placeholder`)
 - **Moda:** vídeo real (`assets/video/moda-video.mp4`) ainda não enviado — o player está com poster de placeholder
-- `assets/img/qr-code.png` foi recebido mas ainda não está usado em nenhuma página
 
-Para trocar qualquer placeholder, basta substituir o arquivo em `assets/img/` (ou `assets/video/`) mantendo o mesmo nome, ou editar o `src` direto no HTML da página.
+Para trocar qualquer placeholder por uma foto real, substitua o `<div class="media-placeholder">...</div>` por um `<img src="assets/img/NOME-DA-FOTO.jpg" alt="...">` direto no HTML da página, mantendo o restante da estrutura.
 
 ## Rodar localmente
 
